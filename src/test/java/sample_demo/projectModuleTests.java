@@ -1,19 +1,17 @@
 package sample_demo;
 
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class projectModuleTests {
@@ -44,8 +42,8 @@ public class projectModuleTests {
 	        driver.findElement(By.id("admin_password")).sendKeys("123456");
 	        driver.findElement(By.className("btn")).click();
 	        Thread.sleep(3000); 
-	        String title = driver.getTitle();
-	        System.out.println(title) ;
+	        String title = driver.getCurrentUrl();
+	        assert title == "https://tms.pisystindia.com/admin/project/dashboard" ;  
 
 	        
 	    }
@@ -70,28 +68,71 @@ public class projectModuleTests {
 	    	driver.findElement(By.linkText("Projects")).click();
 	    	driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div/div/div/div[1]/a[1]")).click();
 	    	//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    	driver.findElement(By.id("project_name")).sendKeys("Zscaler-Demo-Project-SIT2");
-	    	driver.findElement(By.id("project_code")).sendKeys("ZSCALER-SEL-02");
-	    	driver.findElement(By.id("project_description")).sendKeys("This is an automated selenium test run - 2");
+	    	driver.findElement(By.id("project_name")).sendKeys("QA-Train-Demo-Project-SIT");
+	    	driver.findElement(By.id("project_code")).sendKeys("QATrain03");
+	    	driver.findElement(By.id("project_description")).sendKeys("This is an automated selenium test run - 3");
 	    	
 	    	
 	    	
 	    	JavascriptExecutor jsex = (JavascriptExecutor) driver;
-	    	jsex.executeScript("document.getElementById('start_date').value = '2022-06-03';");
-	    	
-	    	jsex.executeScript("document.getElementById('end_date').value = '2022-06-10';");
-	    	
+	    	jsex.executeScript("document.getElementById('start_date').value = '2022-06-29';");	    	
+	    	jsex.executeScript("document.getElementById('end_date').value = '2022-06-30';");  	
 	    	
 	    	
 	    	
 	    
-	    	Thread.sleep(6000);     	
-	    	
+	    	Thread.sleep(6000);   	   	
 	    	
 	    	driver.findElement(By.cssSelector("button.btn")).click();
 	    	
+	    	Thread.sleep(6000);	    	
+	    	
+	    	
+	    	String url_header = driver.getCurrentUrl();  
+	    	
+	    	System.out.println(url_header);
+	    	
+	    	assert url_header == "https://tms.pisystindia.com/admin/project" ;  	
+	    	
+	    	 
+	    	
+	    }
+	    
+	    void createDuplicateProject() throws InterruptedException {
+	    	
+	    	Login();
+	    	
+	    	//driver.get("http://localhost:5000/");
+	    	driver.findElement(By.linkText("Projects")).click();
+	    	driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div/div/div/div[1]/a[1]")).click();
+	    	//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	    	driver.findElement(By.id("project_name")).sendKeys("QA-Train-Demo-Project-SIT");
+	    	driver.findElement(By.id("project_code")).sendKeys("QATrain01");
+	    	driver.findElement(By.id("project_description")).sendKeys("This is an automated selenium test run - 3");
+	    	
+	    	
+	    	
+	    	JavascriptExecutor jsex = (JavascriptExecutor) driver;
+	    	jsex.executeScript("document.getElementById('start_date').value = '2022-06-29';");	    	
+	    	jsex.executeScript("document.getElementById('end_date').value = '2022-06-30';");  	
+	    	
+	    	
 	    	
 	    
+	    	Thread.sleep(6000);   	   	
+	    	
+	    	driver.findElement(By.cssSelector("button.btn")).click();
+	    	
+	    	Thread.sleep(6000);	    	
+	    	
+	    	
+	    	String url_header = driver.getCurrentUrl();  
+	    	
+	    	System.out.println(url_header);
+	    	
+	    	assert url_header == "https://tms.pisystindia.com/admin/project/add" ;  	
+	    	
+	    	 
 	    	
 	    }
 	    
