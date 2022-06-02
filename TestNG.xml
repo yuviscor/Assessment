@@ -5,6 +5,7 @@
     <classes>
 	    <class name="sample_demo.projectModuleTests"/>
 	    <class name="sample_demo.warehouse_inventory"/>
+	    <class name="sample_demo.projectModule"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
